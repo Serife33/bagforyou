@@ -28,11 +28,11 @@ class Bag
 
     #[ORM\ManyToOne(inversedBy: 'borrower')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?user $user = null;
+    private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'owner')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?user $owner = null;
+    private ?User $owner = null;
 
     #[ORM\ManyToOne(inversedBy: 'bags')]
     #[ORM\JoinColumn(nullable: false)]
