@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div>
+        <h2>{{ bag.name }}</h2>
+        <div>
+            <img src="{{ asset('uploads/bag/' ~ bag.img) }}" alt="" />
+        </div>
+        <div>
+            <span>{{ bag.brand }}</span>
+            <span>{{ bag.color }}</span>
+            <span> {{ bag.owner.email }}</span>
+            <span>{{ bag.Type.name }}</span>
+        </div>
+        {% include "bag/_form_delete.html.twig" %}
+    </div>
+{% endblock %}

@@ -22,19 +22,20 @@ class BagType extends AbstractType
             ->add('color')
             ->add('img', FileType::class, [
                 'label'=> 'image',
-                'mapped' => false
+                'mapped' => false,
+                'required' => false,
             ])
             ->add('user', EntityType::class, [
                 'class' => user::class,
-                'choice_label' => 'id',
+                'choice_label' => 'email',
             ])
             ->add('owner', EntityType::class, [
                 'class' => user::class,
-                'choice_label' => 'id',
+                'choice_label' => 'email',
             ])
             ->add('Type', EntityType::class, [
                 'class' => Type::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
             ])
             ->add('Submit', SubmitType::class,[
                 'label' => 'Ajouter un sac'
