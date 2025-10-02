@@ -25,14 +25,14 @@ class BagType extends AbstractType
                 'mapped' => false,
                 'required' => false,
             ])
-            ->add('user', EntityType::class, [
-                'class' => user::class,
-                'choice_label' => 'email',
-            ])
-            ->add('owner', EntityType::class, [
-                'class' => user::class,
-                'choice_label' => 'email',
-            ])
+            // ->add('user', EntityType::class, [
+            //     'class' => user::class,
+            //     'choice_label' => 'email',
+            // ])
+            // ->add('owner', EntityType::class, [
+            //     'class' => user::class,
+            //     'choice_label' => 'email',
+            // ])
             ->add('Type', EntityType::class, [
                 'class' => Type::class,
                 'choice_label' => 'name',

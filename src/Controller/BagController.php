@@ -26,24 +26,24 @@ final class BagController extends AbstractController
     #[Route('/bag/add', name: 'app_bag_add')]
     public function add(Request $request, EntityManagerInterface $em)
     {
-
         $bag = new Bag();
         $bagForm = $this->createForm(BagType::class, $bag);
         $bagForm->handleRequest($request);
 
         if ($bagForm->isSubmitted() && $bagForm->isValid()) {
             $file = $bagForm->get('img')->getData();
-
+            
             if ($file) {
                 $newFileName = time() . '-' . $file->getClientOriginalName();
                 $file->move($this->getParameter('bag_dir'), $newFileName);
                 $bag->setImg($newFileName);
 
             }
+            $bag->setOwner($this->getUser());
             $em->persist($bag);
             $em->flush();
 
-            return $this->redirectToRoute('app_bag');
+            return $this->redirectToRoute('app_user_page_mybags');
 
         }
 
