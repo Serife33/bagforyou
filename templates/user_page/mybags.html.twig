@@ -1,22 +1,25 @@
 {% extends 'base.html.twig' %} 
 
-{% block body %} 
-    {% for bag in bags %}
-        <div>
-        <h2>{{ bag.name }}</h2>
-        <div>
-            <img src="{{ asset('uploads/bag/' ~ bag.img) }}" alt="" />
-        </div>
-        <div>
-            <span>{{ bag.brand }}</span>
-            <span>{{ bag.color }}</span>
-            <span> {{ bag.owner.email }}</span>
-            <span>{{ bag.Type.name }}</span>
-        </div>
-        <div>
-            <button><a href="{{ path('app_bag_show', {id : bag.id}) }}">Voir</a></button>
-        </div>
-        </div>
+{% block body %}
+    <section class="bags-list">
+        {% for bag in bags %}
 
-    {% endfor %} 
+            <div class="home-cards-bag">
+                <h2>{{ bag.name }}</h2>
+                <div>
+                    <img src="{{ asset('uploads/bag/' ~ bag.img) }}" alt="" class="home-card-img"/>
+                </div>
+                <div>
+                    <span><strong>Marque :</strong>{{ bag.brand }}</span>
+                    <span><strong>Couleur :</strong>{{ bag.color }}</span>
+                    <span><strong>Propriétaire :</strong>{{ bag.owner.email }}</span>
+                    <span><strong>Type :</strong>{{ bag.Type.name }}</span>
+                </div>
+                <div>
+                    <a href="{{ path('app_bag_show', {id : bag.id}) }}" class="btn-see-show">Voir</a>
+                </div>
+            </div>
+
+        {% endfor %}
+    </section>
 {% endblock %}
