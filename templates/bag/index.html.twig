@@ -25,14 +25,14 @@
           <span><strong>Propriétaire :</strong> {{ bag.owner.email }}</span>
           <span><strong>Type :</strong> {{ bag.Type.name }}</span>
         </div>
-        <div>
-          <a href="{{ path('app_bag_show', {id : bag.id}) }}" class="btn-see-show">Voir</a>
-        {# <button><a href="{{ path('app_bag_borrows')}}">Emprunter</a></button> #}
-         {% include "user_page/_form_borrows.html.twig" %}
+        <div class="card-btns">
+          <a href="{{ path('app_bag_show', {id : bag.id}) }}"><button class="btn-see-show">Voir</button></a>
+          {# <button><a href="{{ path('app_bag_borrows')}}">Emprunter</a></button> #}
+          {% include "user_page/_form_borrows.html.twig" %}
         </div>
 
       </div>
-      
+
     {% endfor %} 
 
   </section>
