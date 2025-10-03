@@ -18,6 +18,12 @@ final class BagController extends AbstractController
     {
         $bag = $bagRepository->findBy([]);
 
+        if ('user' === 'login') {
+            $this->addFlash('success', 'Vous avez emprunté ce sac');
+        } else {
+            $this->addFlash('error', "Echec de l'emprunt");
+        }
+
         return $this->render('bag/index.html.twig', [
             'bags' => $bag
         ]);
@@ -32,7 +38,7 @@ final class BagController extends AbstractController
 
         if ($bagForm->isSubmitted() && $bagForm->isValid()) {
             $file = $bagForm->get('img')->getData();
-            
+
             if ($file) {
                 $newFileName = time() . '-' . $file->getClientOriginalName();
                 $file->move($this->getParameter('bag_dir'), $newFileName);
@@ -53,7 +59,7 @@ final class BagController extends AbstractController
 
     }
 
-    #[Route('bag/{id}/show', name:'app_bag_show')]
+    #[Route('bag/{id}/show', name: 'app_bag_show')]
     public function show(BagRepository $bagRepository, int $id)
     {
         $bag = $bagRepository->findOneBy(['id' => $id]);
@@ -63,14 +69,14 @@ final class BagController extends AbstractController
         ]);
     }
 
-    #[Route('bag/{id}/edit', name:'app_bag_edit')]
+    #[Route('bag/{id}/edit', name: 'app_bag_edit')]
     public function edit(Request $request, EntityManagerInterface $em, Bag $bag)
     {
 
         $bagForm = $this->createForm(BagType::class, $bag);
         $bagForm->handleRequest($request);
-        
-        if($bagForm->isSubmitted() && $bagForm->isValid()){
+
+        if ($bagForm->isSubmitted() && $bagForm->isValid()) {
 
             $file = $bagForm->get('img')->getData();
 
@@ -93,16 +99,16 @@ final class BagController extends AbstractController
 
     }
 
-    #[Route('bag/{id}/delete', name:'app_bag_delete', methods: ['POST'])]
+    #[Route('bag/{id}/delete', name: 'app_bag_delete', methods: ['POST'])]
     public function delete(Request $request, Bag $bag, EntityManagerInterface $em)
     {
         //dd('delete'. $bag->getId(), $request->request->get('_tokken'));
-        if($this->isCsrfTokenValid('delete'. $bag->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $bag->getId(), $request->request->get('_token'))) {
 
             $em->remove($bag);
             $em->flush();
             $this->addFlash('success', 'Bravo votre article a été supprimé');
-            
+
             return $this->redirectToRoute('app_bag', []);
 
         } else {
@@ -111,7 +117,34 @@ final class BagController extends AbstractController
             return $this->redirectToRoute('app_bag', []);
 
         }
+        
+//  BagRepository $bagRepository,Request $request, Bag $bag, EntityManagerInterface $em)
+    }
+    #[Route('bag/{id}/borrows', name: 'app_bag_borrows')]
+    public function borrows(BagRepository $bagRepository, Request $request, $id)
+    {  
+        $bag = $bagRepository->findOneBy(['id' => $id]);
+
+        $user = $this->getUser();
+        $bag->setUser($user);
+       
+           return $this->redirectToRoute('app_user_page', []);
+
+        // if ('user' === 'login') {
+
+
+        //  if($this->isCsrfTokenValid('borrows'. $bag->getId(), $request->request->get('_token'))) {
+
+
+        // } else {
+
+
+
+        // }
+
+        // }else{
+        //       $this->addFlash('error', "Echec de l'emprunt");
+        // }
 
     }
-
 }

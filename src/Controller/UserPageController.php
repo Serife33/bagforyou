@@ -31,7 +31,21 @@ final class UserPageController extends AbstractController
         return $this->render('user_page/mybags.html.twig', [
             'bags' => $bags
         ]);
+        //bouton forcer le rendu
     }
 
  
+    // #[Route(path: 'user/page/borrows',name: 'app_user_page_borrows')]
+
+    // public function borrows( BagRepository $bagRepository) {
+    //       $bags = $bagRepository->findBy(['user' => $this->getUser()->getId()]);
+
+    //          return $this->render('user_page/borrows.html.twig', [
+    //         'bags' => $bags
+    //     ]);
+    // }
+    //fonction du haut pour recuperer les emprunts que l'utilisateur a emprunté avec
+    //username à la place de owner
+
 }
+
