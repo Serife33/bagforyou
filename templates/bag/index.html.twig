@@ -1,5 +1,10 @@
-{% extends 'base.html.twig' %} {% block title %}Hello BagController!{% endblock
-%} {% block body %} {% for bag in bags %}
+{% extends 'base.html.twig' %} 
+
+{% block title %}Hello BagController!{% endblock%} 
+
+{% block body %} 
+
+{% for bag in bags %}
 <div>
   <h2>{{ bag.name }}</h2>
   <div>
@@ -12,5 +17,10 @@
     <span>{{ bag.Type.name }}</span>
   </div>
 </div>
+<div>
+  <button><a href="{{ path('app_bag_show', {id : bag.id}) }}">Voir</a></button>
+</div>
 
-{% endfor %} {% endblock %}
+{% endfor %} 
+
+{% endblock %}

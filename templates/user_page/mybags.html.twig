@@ -1,6 +1,8 @@
-{% extends 'base.html.twig' %}
-{% block body %}
-    <div>
+{% extends 'base.html.twig' %} 
+
+{% block body %} 
+    {% for bag in bags %}
+        <div>
         <h2>{{ bag.name }}</h2>
         <div>
             <img src="{{ asset('uploads/bag/' ~ bag.img) }}" alt="" />
@@ -11,11 +13,10 @@
             <span> {{ bag.owner.email }}</span>
             <span>{{ bag.Type.name }}</span>
         </div>
-
         <div>
-            <button><a href="{{ path('app_bag_edit', {id : bag.id}) }}">Modifier</a></button>
-            {% include "bag/_form_delete.html.twig" %}
+            <button><a href="{{ path('app_bag_show', {id : bag.id}) }}">Voir</a></button>
+        </div>
         </div>
 
-    </div>
+    {% endfor %} 
 {% endblock %}
