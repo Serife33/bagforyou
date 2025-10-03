@@ -16,7 +16,12 @@ span {
 }
 
 li {
-    t
+    list-style: none;
+    margin: 5px;
+}
+
+a {
+    text-decoration: none;
 }
 
 /* HEADER */
