@@ -118,33 +118,20 @@ final class BagController extends AbstractController
 
         }
         
-//  BagRepository $bagRepository,Request $request, Bag $bag, EntityManagerInterface $em)
     }
     #[Route('bag/{id}/borrows', name: 'app_bag_borrows')]
-    public function borrows(BagRepository $bagRepository, Request $request, $id)
+    public function borrows(BagRepository $bagRepository, $id, EntityManagerInterface $em,)
     {  
         $bag = $bagRepository->findOneBy(['id' => $id]);
 
         $user = $this->getUser();
         $bag->setUser($user);
+
+        $em->flush();
+        $this->addFlash('Success','sac emprunté!');
        
            return $this->redirectToRoute('app_user_page', []);
 
-        // if ('user' === 'login') {
-
-
-        //  if($this->isCsrfTokenValid('borrows'. $bag->getId(), $request->request->get('_token'))) {
-
-
-        // } else {
-
-
-
-        // }
-
-        // }else{
-        //       $this->addFlash('error', "Echec de l'emprunt");
-        // }
-
+    
     }
 }

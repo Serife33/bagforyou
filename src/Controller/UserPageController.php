@@ -24,7 +24,8 @@ final class UserPageController extends AbstractController
     }
 
     #[Route('user/page/mybags', name: 'app_user_page_mybags')]
-    public function mybags( BagRepository $bagRepository) {
+    public function mybags(BagRepository $bagRepository)
+    {
 
         $bags = $bagRepository->findBy(['owner' => $this->getUser()->getId()]);
 
@@ -34,18 +35,16 @@ final class UserPageController extends AbstractController
         //bouton forcer le rendu
     }
 
- 
-    // #[Route(path: 'user/page/borrows',name: 'app_user_page_borrows')]
 
-    // public function borrows( BagRepository $bagRepository) {
-    //       $bags = $bagRepository->findBy(['user' => $this->getUser()->getId()]);
+    #[Route('user/page/allBorrows', name: 'app_user_allborrows')]
+    public function allBorrows(BagRepository $bagRepository)
+    {
+        $bags = $bagRepository->findBy(['user' => $this->getUser()->getId()]);
 
-    //          return $this->render('user_page/borrows.html.twig', [
-    //         'bags' => $bags
-    //     ]);
-    // }
-    //fonction du haut pour recuperer les emprunts que l'utilisateur a emprunté avec
-    //username à la place de owner
+        return $this->render('user_page/borrows.html.twig', [
+            'bags' => $bags
+        ]);
+    }
 
 }
 

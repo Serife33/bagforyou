@@ -19,13 +19,13 @@
             <header>
                 {# <h1>Bag For You</h1> #}
                 <div class="header-logo">
-                    <img src="uploads/bagforyou_logo.png" alt="Bag For You">
+                 <img src="{{ asset('uploads/bagforyou_logo.png') }}" alt="Bag For You">
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="bag">Accueil</a></li>
-                        <li><a href="login">Connexion</a></li>
-                        <li><a href="logout">Déconnexion</a></li>
+                        <li><a href="{{ path('app_bag') }}">Accueil</a></li>
+                        <li><a href="{{ path('app_login') }}">Connexion</a></li>
+                        <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
                     </ul>
                 </nav>
             </header>
