@@ -4,6 +4,9 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded:ital,wght@0,200;1,200&display=swap" rel="stylesheet">
         {% block stylesheets %}
         {% endblock %}
 
@@ -13,19 +16,27 @@
     </head>
     <body>
 
-    <header>
-        <h1>Bag For You</h1>
-        <nav>
-            <ul>
-                <li><a href="bag">Accueil</a></li>
-                <li><a href="register">Connexion</a></li>
-                <li><a href="logout">Déconnexion</a></li>
-            </ul>
-        </nav>
-    </header>
+        <header>
+            {# <h1>Bag For You</h1> #}
+            <div class="header-logo">
+                <img src="uploads/bagforyou_logo.png" alt="Bag For You">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="bag">Accueil</a></li>
+                    <li><a href="login">Connexion</a></li>
+                    <li><a href="logout">Déconnexion</a></li>
+                </ul>
+            </nav>
+        </header>
 
         {% block body %}
 
         {% endblock %}
+
+        <footer>
+            <span>&copy; 2025 - LSV : Loriana, Serife et Vanessa</span>
+        </footer>
+    
     </body>
 </html>
