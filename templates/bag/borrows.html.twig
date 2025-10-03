@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %} {% block body %} {% for bag in bags %}
+<div>
+  <h2>{{ bag.name }}</h2>
+  <div>
+    <img src="{{ asset('uploads/bag/' ~ bag.img) }}" alt="" />
+  </div>
+  <div>
+    <span>{{ bag.brand }}</span>
+    <span>{{ bag.color }}</span>
+    <span> {{ bag.owner.email }}</span>
+    <span>{{ bag.Type.name }}</span>
+  </div>
+  <div>
+    <button>
+      <a href="">Retour</a>
+    </button>
+  </div>
+</div>
+
+{% endfor %} {% endblock %}

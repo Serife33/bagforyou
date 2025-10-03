@@ -1,0 +1,11 @@
+<form action="{{ path('app_bag_borrows', { id: bag.id }) }}"
+    method="POST"
+    onsubmit="return confirm('confirmez-vous la location de cet article ?')">
+{# 
+    <input type="hidden"
+    name="_token"
+    value="{{ csrf_token('emprunter' ~ bag.id) }}"/> #}
+
+    <button type="submit">Emprunter</button>
+
+</form>

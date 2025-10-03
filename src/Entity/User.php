@@ -53,6 +53,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->borrower = new ArrayCollection();
         $this->owner = new ArrayCollection();
     }
+    
 
     public function getId(): ?int
     {
