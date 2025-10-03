@@ -1,21 +1,23 @@
-{% extends 'base.html.twig' %}
-{% block body %}
-    <div>
-        <h2>{{ bag.name }}</h2>
-        <div>
-            <img src="{{ asset('uploads/bag/' ~ bag.img) }}" alt="" />
-        </div>
-        <div>
-            <span>{{ bag.brand }}</span>
-            <span>{{ bag.color }}</span>
-            <span> {{ bag.owner.email }}</span>
-            <span>{{ bag.Type.name }}</span>
-        </div>
-
-        <div>
-            <button><a href="{{ path('app_bag_edit', {id : bag.id}) }}">Modifier</a></button>
-            {% include "bag/_form_delete.html.twig" %}
-        </div>
-
+{% extends 'base.html.twig' %} {% block body %}
+<section class="show-class">
+  <div class="show_box">
+    <h2>{{ bag.name }}</h2>
+    <div class="show-img">
+      <img src="{{ asset('uploads/bag/' ~ bag.img) }}" alt="" />
     </div>
+    <div class="show-tiles">
+      <span><strong>Marque :</strong>{{ bag.brand }}</span>
+      <span><strong>Couleur :</strong>{{ bag.color }}</span>
+      <span><strong>Propriétaire :</strong> {{ bag.owner.email }}</span>
+      <span><strong>Type :</strong>{{ bag.Type.name }}</span>
+    </div>
+
+    <div class="card-btns">
+      <a href="{{ path('app_bag_edit', { id: bag.id }) }}"
+        ><button class="btn-see-show">Modifier</button></a
+      >
+      {% include "bag/_form_delete.html.twig" %}
+    </div>
+  </div>
+</section>
 {% endblock %}

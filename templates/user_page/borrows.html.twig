@@ -1,5 +1,7 @@
-{% extends 'base.html.twig' %} {% block body %} {% for bag in bags %}
-<div>
+{% extends 'base.html.twig' %} {% block body %} 
+<section class="bags-list">
+{% for bag in bags %}
+<div class="home-cards-bag">
   <h2>{{ bag.name }}</h2>
   <div>
     <img src="{{ asset('uploads/bag/' ~ bag.img) }}" alt="" />
@@ -11,10 +13,13 @@
     <span>{{ bag.Type.name }}</span>
   </div>
   <div>
-    <button>
-      <a href="">Retour</a>
-    </button>
+    <a href="">
+      <button class="btn-see-show">
+      Retour
+    </button></a>
   </div>
 </div>
 
-{% endfor %} {% endblock %}
+{% endfor %} 
+</section>
+{% endblock %}

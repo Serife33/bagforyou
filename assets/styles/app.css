@@ -122,3 +122,27 @@ strong {
 .card-btns {
     display: flex;
 }
+
+/* SHOW PAGE */
+.show-class {
+display: flex;
+width: 100%;
+justify-content: center;
+}
+
+.show_box {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    align-items: center;
+    background-color: white;
+    box-shadow: inset 1px 1px 10px 4px rgba(189, 224, 254, 0.4);
+    margin: 40px;
+    padding: 30px;
+    border-radius: 30px;
+    gap: 30px;
+}
+
+.show-img {
+    width: 50%;
+}
