@@ -1,0 +1,11 @@
+<form action="{{ path('app_user_return', { id: bag.id }) }}"
+    method="POST"
+    onsubmit="return confirm('confirmez-vous le rendu de cet article ?')">
+{# 
+    <input type="hidden"
+    name="_token"
+    value="{{ csrf_token('emprunter' ~ bag.id) }}"/> #}
+
+    <button type="submit" class="btn-see-show">Rendre</button>
+
+</form>

@@ -20,6 +20,7 @@ final class UserPageController extends AbstractController
         $user = $this->getUser();
 
         return $this->render('user_page/index.html.twig', [
+            'user' => $user
         ]);
     }
 
@@ -40,11 +41,26 @@ final class UserPageController extends AbstractController
     public function allBorrows(BagRepository $bagRepository)
     {
         $bags = $bagRepository->findBy(['user' => $this->getUser()->getId()]);
+        
 
         return $this->render('user_page/borrows.html.twig', [
             'bags' => $bags
         ]);
     }
+   #[Route('user/{id}/return', name: 'app_user_return')]
+    public function return(BagRepository $bagRepository, $id, EntityManagerInterface $em,)
+    {  
+        $bag = $bagRepository->findOneBy(['id' => $id]);
 
+        $user = $this->getUser();
+        $bag->setUser(null);
+
+        $em->flush();
+        $this->addFlash('Success','sac rendu!');
+       
+           return $this->redirectToRoute('app_user_page', []);
+
+    
+    }
 }
 

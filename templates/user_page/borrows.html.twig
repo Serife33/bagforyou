@@ -7,17 +7,12 @@
     <img src="{{ asset('uploads/bag/' ~ bag.img) }}" alt="" />
   </div>
   <div>
-    <span>{{ bag.brand }}</span>
-    <span>{{ bag.color }}</span>
-    <span> {{ bag.owner.email }}</span>
-    <span>{{ bag.Type.name }}</span>
+    <span><strong>Marque: </strong>{{ bag.brand }}</span>
+    <span><strong>Couleur: </strong>{{ bag.color }}</span>
+    <span><strong>Propriétaire: </strong>{{ bag.owner.username }}</span>
+    <span><strong>Type: </strong>{{ bag.Type.name }}</span>
   </div>
-  <div>
-    <a href="">
-      <button class="btn-see-show">
-      Retour
-    </button></a>
-  </div>
+    {% include "user_page/_form_return.html.twig" %}
 </div>
 
 {% endfor %} 

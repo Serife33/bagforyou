@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,11 +18,17 @@ class BagType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('brand')
-            ->add('color')
+            ->add('name', TextType::class, [
+                'label' =>'Nom',
+            ])
+            ->add('brand', TextType::class, [
+                'label' => 'Marque'
+            ])
+            ->add('color', TextType::class, [
+                'label' => 'Couleur'
+            ])
             ->add('img', FileType::class, [
-                'label'=> 'image',
+                'label'=> 'Image',
                 'mapped' => false,
                 'required' => false,
             ])
@@ -38,7 +45,8 @@ class BagType extends AbstractType
                 'choice_label' => 'name',
             ])
             ->add('Submit', SubmitType::class,[
-                'label' => 'Ajouter un sac'
+                'label' => 'Ajouter un sac',
+                'attr'  => ['class' => 'btn btn-primary form-submit btn-see-show'],                
             ])
         ;
     }

@@ -24,6 +24,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 190)]
     private ?string $email = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $Username = null;
+
     /**
      * @var list<string> The user roles
      */
@@ -47,6 +50,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\OneToMany(targetEntity: Bag::class, mappedBy: 'owner')]
     private Collection $owner;
+
+   
 
     public function __construct()
     {
@@ -181,6 +186,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $owner->setOwner(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->Username;
+    }
+
+    public function setUsername(string $Username): static
+    {
+        $this->Username = $Username;
 
         return $this;
     }

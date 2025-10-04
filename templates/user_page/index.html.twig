@@ -1,12 +1,14 @@
-{% extends 'base.html.twig' %}
+    {% extends 'base.html.twig' %}
 
 
 
-{% block body %}
-    <h1>Bienvenu(e) dans votre profil </h1>
-
-    <button><a href="{{ path('app_bag_add')}}">Ajouter un sac</a></button>
-    <button><a href="{{ path('app_user_page_mybags')}}">Voir mes sacs</a></button>
-    <a href="{{ path('app_user_allborrows') }}">Sacs empruntés</a>
-
-{% endblock %}
+    {% block body %}
+    <section class="profile-page">
+        <h1>Bienvenu(e) dans votre profil {{ user.username}} </h1>
+        <div class="profile-btns">
+            <a href="{{ path('app_bag_add')}}">Ajouter un sac</a>
+            <a href="{{ path('app_user_page_mybags')}}"> Voir mes sacs</a>
+            <a href="{{ path('app_user_allborrows') }}">Sacs empruntés</a>
+        </div>
+    </section>
+    {% endblock %}
