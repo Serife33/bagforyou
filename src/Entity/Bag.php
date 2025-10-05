@@ -26,6 +26,10 @@ class Bag
     #[ORM\Column(type: Types::TEXT)]
     private ?string $img = null;
 
+    
+    #[ORM\Column(length: 20)]
+    private string $status = 'available';
+
     #[ORM\ManyToOne(inversedBy: 'borrower')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
@@ -124,6 +128,17 @@ class Bag
     {
         $this->Type = $Type;
 
+        return $this;
+    }
+
+      public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): static
+    {
+        $this->status = $status;
         return $this;
     }
 }

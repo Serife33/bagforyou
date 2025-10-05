@@ -36,31 +36,42 @@ final class UserPageController extends AbstractController
         //bouton forcer le rendu
     }
 
+#[Route('user/page/allBorrows', name: 'app_user_allborrows')]
+public function allBorrows(BagRepository $bagRepository)
+{
+    $bags = $bagRepository->findBy([
+        'user' => $this->getUser(),
+        'status' => 'borrowed'   
+    ]);
 
-    #[Route('user/page/allBorrows', name: 'app_user_allborrows')]
-    public function allBorrows(BagRepository $bagRepository)
-    {
-        $bags = $bagRepository->findBy(['user' => $this->getUser()->getId()]);
-        
+    return $this->render('user_page/borrows.html.twig', [
+        'bags' => $bags
+    ]);
+}
 
-        return $this->render('user_page/borrows.html.twig', [
-            'bags' => $bags
-        ]);
+
+  #[Route('user/{id}/return', name: 'app_user_return')]
+public function return(
+    BagRepository $bagRepository,
+    int $id,
+    EntityManagerInterface $em
+) {
+    $bag = $bagRepository->find($id);
+
+    if (!$bag) {
+        throw $this->createNotFoundException('Sac introuvable.');
     }
-   #[Route('user/{id}/return', name: 'app_user_return')]
-    public function return(BagRepository $bagRepository, $id, EntityManagerInterface $em,)
-    {  
-        $bag = $bagRepository->findOneBy(['id' => $id]);
 
-        $user = $this->getUser();
-        $bag->setUser(null);
+    // ✅ Ne plus supprimer le user
+    // $bag->setUser(null);
 
-        $em->flush();
-        $this->addFlash('Success','sac rendu!');
-       
-           return $this->redirectToRoute('app_user_page', []);
+    // ✅ Change juste le statut
+    $bag->setStatus('available');
 
-    
-    }
+    $em->flush();
+
+    $this->addFlash('success', 'Sac rendu !');
+    return $this->redirectToRoute('app_user_page');
+}
 }
 
